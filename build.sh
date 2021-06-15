@@ -31,17 +31,29 @@ cmake --build ./build_ninja --config Debug --target all -j 10 --
 
 echo
 echo "*************************"
-echo Execute with "Unix Makefiles"
+echo Show NEEDED path with  "Unix Makefiles"
 echo "*************************"
 cd build_make/so_test_exe/
+objdump -x so_test_exe  | grep libwasmer.so
+
+echo
+echo "*************************"
+echo Execute with "Unix Makefiles"
+echo "*************************"
 ./so_test_exe
 cd $SCRIPT_DIR
 
 echo
 echo "*************************"
-echo Execute with "Ninja" - WILL FAIL - SHARED LIB NOT FOUND
+echo Show NEEDED path with  "Ninja"
 echo "*************************"
 cd build_ninja/so_test_exe/
+objdump -x so_test_exe  | grep libwasmer.so
+
+echo
+echo "*************************"
+echo Execute with "Ninja" - WILL FAIL - SHARED LIB NOT FOUND
+echo "*************************"
 ./so_test_exe
 cd $SCRIPT_DIR
 
